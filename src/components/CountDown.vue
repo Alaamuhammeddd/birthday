@@ -47,7 +47,7 @@ const time = ref({
   seconds: 0,
 })
 
-let timer: NodeJS.Timeout
+let timer: number
 
 const updateTime = () => {
   const now = dayjs()
