@@ -1,6 +1,7 @@
 <template>
   <div class="overlay">
     <div class="modal">
+      <button @click="closeModal" class="close-btn">X</button>
       <h1>Add New Memory</h1>
 
       <input type="file" accept="image/*" @change="addMemory" class="file-input" />
@@ -24,7 +25,11 @@ const addMemory = (event: Event) => {
   const input = event.target as HTMLInputElement
   selectedFile.value = input.files?.[0] || null
 }
-const emit = defineEmits(['memoryAdded'])
+const emit = defineEmits(['memoryAdded', 'close'])
+
+const closeModal = () => {
+  emit('close')
+}
 
 const submitMemory = () => {
   if (!selectedFile.value) return
@@ -75,6 +80,7 @@ const submitMemory = () => {
 
 /* Modal card */
 .modal {
+  position: relative;
   background: white;
   padding: 30px 35px;
   border-radius: 16px;
@@ -83,7 +89,18 @@ const submitMemory = () => {
   text-align: center;
   animation: popIn 0.25s ease;
 }
-
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  text-align: right;
+  justify-content: flex-end;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
 h1 {
   margin-bottom: 20px;
   font-size: 1.5rem;

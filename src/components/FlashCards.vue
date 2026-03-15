@@ -18,7 +18,7 @@
     </vue-flip>
 
     <!-- Memory Modal -->
-    <AddMemoryModal v-if="showModal" @memoryAdded="onMemoryAdded" />
+    <AddMemoryModal v-if="showModal" @memoryAdded="onMemoryAdded" @close="showModal = false" />
   </div>
 
   <button @click="addMemory">Add Memory</button>
