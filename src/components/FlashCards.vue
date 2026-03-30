@@ -1,59 +1,54 @@
 <template>
   <div class="flashCard">
     <vue-flip
-      v-for="(memory, index) in memories"
-      :key="index"
+      v-for="memory in memories"
+      :key="memory.publicId"
       :active-click="true"
       width="200px"
       height="200px"
     >
+      <!-- FRONT -->
       <template #front>
-        <img :src="memory.image" class="logo" />
+        <AdvancedImage :cldImg="cld.image(memory.publicId)" class="logo" />
       </template>
 
+      <!-- BACK -->
       <template #back>
-        <img :src="memory.image" class="logo" style="opacity: 0.5" />
+        <AdvancedImage :cldImg="cld.image(memory.publicId)" class="logo dimmed" />
         <p class="back-text">{{ memory.description }}</p>
       </template>
     </vue-flip>
 
-    <!-- Memory Modal -->
     <AddMemoryModal v-if="showModal" @memoryAdded="onMemoryAdded" @close="showModal = false" />
   </div>
 
-  <button @click="addMemory">Add Memory</button>
+  <button @click="showModal = true">Add Memory</button>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { VueFlip } from 'vue-flip'
 import AddMemoryModal from './AddMemoryModal.vue'
+import { cld } from '@/cloudinary'
+import { AdvancedImage } from '@cloudinary/vue'
+import { getMemories } from '@/db'
 
 interface Memory {
-  image: string
+  publicId: string
   description: string
 }
 
 const memories = ref<Memory[]>([])
 const showModal = ref(false)
 
-const addMemory = () => {
-  showModal.value = true
+const loadMemories = async () => {
+  memories.value = await getMemories()
 }
 
-// Load memories from localStorage on mount
-onMounted(() => {
-  const stored = localStorage.getItem('memories')
-  if (stored) {
-    memories.value = JSON.parse(stored)
-  }
-})
+onMounted(loadMemories)
 
-const onMemoryAdded = (memory: { image: string; description: string }) => {
-  memories.value.push(memory)
-  // Save to localStorage
-  localStorage.setItem('memories', JSON.stringify(memories.value))
-  showModal.value = false
+const onMemoryAdded = async () => {
+  await loadMemories() // 🔥 sync with Firestore
 }
 </script>
 
@@ -65,12 +60,14 @@ const onMemoryAdded = (memory: { image: string; description: string }) => {
 }
 
 .logo {
-  display: block;
-  margin: 0 auto;
-  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: absolute;
+}
+
+.dimmed {
+  opacity: 0.5;
 }
 
 .back-text {
