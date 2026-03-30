@@ -92,7 +92,7 @@ onUnmounted(() => {
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-  font-family: sans-serif;
+  font-family: 'Jersey 25', sans-serif;
 }
 
 .time {

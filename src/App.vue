@@ -2,16 +2,14 @@
 import FlashCards from './components/FlashCards.vue'
 import HeartContainer from './components/HeartContainer.vue'
 import CountDown from './components/CountDown.vue'
-import { AdvancedImage } from '@cloudinary/vue'
-import { cld } from '@/cloudinary'
-import { ref } from 'vue'
+import CardContainer from './components/CardContainer.vue'
 </script>
 
 <template>
   <HeartContainer />
   <CountDown />
   <p>
-    <FlashCards />
+    <CardContainer />
   </p>
 </template>
 

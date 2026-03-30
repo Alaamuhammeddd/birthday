@@ -1,4 +1,5 @@
 import { collection, addDoc, getDocs, orderBy, query } from 'firebase/firestore'
+import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from './firebase'
 
 const memoriesRef = collection(db, 'memories')
@@ -20,4 +21,8 @@ export const getMemories = async () => {
     id: doc.id,
     ...(doc.data() as any),
   }))
+}
+
+export const deleteMemory = async (id: string) => {
+  await deleteDoc(doc(db, 'memories', id))
 }
