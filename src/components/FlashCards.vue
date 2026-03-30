@@ -128,6 +128,7 @@ onMounted(async () => {
   background: red;
   transform: scale(1.1);
 }
+
 .title {
   position: absolute;
   top: -14px;

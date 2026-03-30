@@ -93,6 +93,16 @@ onUnmounted(() => {
   gap: 20px;
   flex-wrap: wrap;
   font-family: 'Jersey 25', sans-serif;
+  padding-block: 20px;
+}
+
+.counter,
+.counter .number {
+  background: linear-gradient(90deg, #c1638a 0%, #ff758c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .time {
