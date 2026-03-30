@@ -2,11 +2,13 @@
 import HeartContainer from './components/HeartContainer.vue'
 import CountDown from './components/CountDown.vue'
 import CardContainer from './components/CardContainer.vue'
+import Letter from './components/Letter.vue'
 </script>
 
 <template>
   <HeartContainer />
   <CountDown />
+  <Letter />
   <p>
     <CardContainer />
   </p>
