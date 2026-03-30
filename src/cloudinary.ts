@@ -2,6 +2,6 @@ import { Cloudinary } from '@cloudinary/url-gen'
 
 export const cld = new Cloudinary({
   cloud: {
-    cloudName: 'dkavjyg6i',
+    cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
   },
 })

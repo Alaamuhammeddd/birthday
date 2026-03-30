@@ -33,10 +33,15 @@ const submitMemory = async () => {
   formData.append('upload_preset', 'memories_upload')
 
   try {
-    const res = await fetch('https://api.cloudinary.com/v1_1/dkavjyg6i/image/upload', {
-      method: 'POST',
-      body: formData,
-    })
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/' +
+        import.meta.env.VITE_CLOUDINARY_CLOUD_NAME +
+        '/image/upload',
+      {
+        method: 'POST',
+        body: formData,
+      },
+    )
 
     // const data = await res.json()
     const data = await res.json()
