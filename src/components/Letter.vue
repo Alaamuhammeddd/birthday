@@ -1,13 +1,16 @@
 <template>
   <div class="letter">
     <h1>My Dearest,</h1>
-    <p></p>
-    <p></p>
+    <p>
+      I’m really grateful to have you in my life. You always make things better, and I’m lucky to
+      have you.
+    </p>
+    <p>I made this website and put all our beautiful memories in it. I hope you like it 🤍</p>
     <p></p>
     <p>
       With all my love,
       <br />
-      [Your Name]
+      Maloka
     </p>
   </div>
 </template>
